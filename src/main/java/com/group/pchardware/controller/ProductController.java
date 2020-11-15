@@ -31,12 +31,12 @@ public class ProductController
     @GetMapping("/category/{id}")
     public ResponseEntity<List<Product>> getProductsByCategory(@PathVariable(value = "id") int id)
     {
-        return new ResponseEntity<List<Product>>(productRepository.findAllByCategory(), HttpStatus.OK);
+        return new ResponseEntity<List<Product>>(productRepository.findAllByCategory(id), HttpStatus.OK);
     }
 
     @GetMapping("/search")
     public ResponseEntity<List<Product>> searchForProducts(@RequestParam String query)
     {
-        return new ResponseEntity<List<Product>>(productRepository.search(), HttpStatus.OK);
+        return new ResponseEntity<List<Product>>(productRepository.search(query), HttpStatus.OK);
     }
 }
