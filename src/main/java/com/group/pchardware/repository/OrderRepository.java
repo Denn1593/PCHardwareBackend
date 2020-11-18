@@ -9,12 +9,11 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.List;
 
 public interface OrderRepository  extends JpaRepository<Product, Integer> {
-    // Remake after changing the naming convention
     @Query(value =
             "SELECT orders.id, orders.date, products.name, order_items.amount, order_items.unit_price, status.name" +
-            "FROM orders " +
+            "FROM orders" +
             "JOIN order_items ON orders.id = order_items.order_id " +
-            "JOIN products ON products.order_item_id = order_items.id" + // not sure I agree on this, why not have a foreign key in the order_items for the product equal to their id
+            "JOIN products ON products.order_item_id = order_items.id" +
             "JOIN status ON orders.status_id = status.id"
             , nativeQuery = true)
     List<Order> findAllOrders();
