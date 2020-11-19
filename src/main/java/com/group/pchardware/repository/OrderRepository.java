@@ -8,7 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 
-public interface OrderRepository  extends JpaRepository<Product, Integer> {
+public interface OrderRepository  extends JpaRepository<Order, Integer> {
 
     @Query(value = "SELECT * FROM order", nativeQuery = true)
     List<Order> findAllOrders();

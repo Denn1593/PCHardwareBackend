@@ -3,17 +3,50 @@ package com.group.pchardware.model;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "product")
+@Table(name = "products")
 public class Product
 {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
     private String description;
+    private String article_number;
+    private String manufacturer;
+    private boolean for_sale;
     private int price;
     private int stock;
     private int category_id;
+
+    public boolean isFor_sale()
+    {
+        return for_sale;
+    }
+
+    public void setFor_sale(boolean for_sale)
+    {
+        this.for_sale = for_sale;
+    }
+
+    public String getArticle_number()
+    {
+        return article_number;
+    }
+
+    public void setArticle_number(String article_number)
+    {
+        this.article_number = article_number;
+    }
+
+    public String getManufacturer()
+    {
+        return manufacturer;
+    }
+
+    public void setManufacturer(String manufacturer)
+    {
+        this.manufacturer = manufacturer;
+    }
 
     public int getId()
     {

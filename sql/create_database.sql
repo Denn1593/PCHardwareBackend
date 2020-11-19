@@ -51,7 +51,7 @@ CREATE TABLE IF NOT EXISTS `PCHardwareV1`.`employees` (
   `address` VARCHAR(255) NULL DEFAULT NULL,
   `last_name` VARCHAR(30) NULL DEFAULT NULL,
   `zip` INT NULL DEFAULT NULL,
-  `Country` VARCHAR(30) NULL DEFAULT NULL,
+  `country` VARCHAR(30) NULL DEFAULT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
@@ -201,17 +201,13 @@ CREATE TABLE IF NOT EXISTS `PCHardwareV1`.`products` (
   `description` VARCHAR(1000) NULL DEFAULT NULL,
   `price` INT NULL DEFAULT NULL,
   `stock` INT NULL DEFAULT NULL,
+  `for_sale` BOOL NULL DEFAULT NULL,
   `category_id` INT NULL DEFAULT NULL,
-  `order_item_id` INT NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   INDEX `FKProducts160638` (`category_id` ASC) VISIBLE,
-  INDEX `FKProducts25864` (`order_item_id` ASC) VISIBLE,
   CONSTRAINT `FKProducts160638`
     FOREIGN KEY (`category_id`)
-    REFERENCES `PCHardwareV1`.`product_categories` (`id`),
-  CONSTRAINT `FKProducts25864`
-    FOREIGN KEY (`order_item_id`)
-    REFERENCES `PCHardwareV1`.`order_items` (`id`))
+    REFERENCES `PCHardwareV1`.`product_categories` (`id`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;

@@ -31,34 +31,34 @@ insert into product_categories (id, name) values (4, 'Monitors');
 truncate table products;
 
 #chargers
-insert into products (id, name, description, price, stock, category_id) values (1, 'Charger', 'a charger designed for the best power effeciency while being fast at charging', 40, 20, 1);
-insert into products (id, name, description, price, stock, category_id) values (2, 'Charger 5mm', 'This charger fits with all 5mm inputs. Charges really fast', 45, 1, 1);
-insert into products (id, name, description, price, stock, category_id) values (3, 'Charger 5mm super edition', 'Super fast charger. Fits all 5mm inputs. requires 230v socket.', 45, 6, 1);
-insert into products (id, name, description, price, stock, category_id) values (4, 'Charger 7mm', 'Charger for 7mm inputs. This charger comes with a 3 meter long cable. Perfect if your socket is far away', 45, 12, 1);
+insert into products (id, name, description, price, stock, category_id, for_sale) values (1, 'Charger', 'a charger designed for the best power effeciency while being fast at charging', 40, 20, 1, true);
+insert into products (id, name, description, price, stock, category_id, for_sale) values (2, 'Charger 5mm', 'This charger fits with all 5mm inputs. Charges really fast', 45, 1, 1, true);
+insert into products (id, name, description, price, stock, category_id, for_sale) values (3, 'Charger 5mm super edition', 'Super fast charger. Fits all 5mm inputs. requires 230v socket.', 45, 6, 1, true);
+insert into products (id, name, description, price, stock, category_id, for_sale) values (4, 'Charger 7mm', 'Charger for 7mm inputs. This charger comes with a 3 meter long cable. Perfect if your socket is far away', 45, 12, 1, true);
 
 #keyboards
-insert into products (id, name, description, price, stock, category_id) values (5, 'Travel keyboard', 'Small sized keyboard that can fit in most backpacks. Perfect for travelling', 67, 0, 2);
-insert into products (id, name, description, price, stock, category_id) values (6, 'Travel keyboard XS', 'Foldable keyboard that can fit in most backpacks. Perfect for travelling and hiking', 75, 0, 2);
-insert into products (id, name, description, price, stock, category_id) values (7, 'Gamer keyboard XD', 'Sick gamer keyboard for the most veteran gamers. Has all the latest features that makes you really badass', 850, 0, 2);
-insert into products (id, name, description, price, stock, category_id) values (8, 'Gamer keyboard XL', 'The perfect gamer keyboard for serious gamers and people who wants to destroy their wallets', 2950, 12, 2);
-insert into products (id, name, description, price, stock, category_id) values (9, 'Office keyboard', 'A standard keyboard. Good for office work and other productive tasks', 40, 42, 2);
-insert into products (id, name, description, price, stock, category_id) values (10, 'Ergonomic keyboard', 'An ergonomic keyboard that will protect your wrists from keyboard syndrome', 59, 5, 2);
-insert into products (id, name, description, price, stock, category_id) values (11, 'Ergonomic gamer keyboard', 'Identical to the ergonomic keyboard, except it has a new logo and a higher price tag', 900, 2, 2);
+insert into products (id, name, description, price, stock, category_id, for_sale) values (5, 'Travel keyboard', 'Small sized keyboard that can fit in most backpacks. Perfect for travelling', 67, 0, 2, true);
+insert into products (id, name, description, price, stock, category_id, for_sale) values (6, 'Travel keyboard XS', 'Foldable keyboard that can fit in most backpacks. Perfect for travelling and hiking', 75, 0, 2, true);
+insert into products (id, name, description, price, stock, category_id, for_sale) values (7, 'Gamer keyboard XD', 'Sick gamer keyboard for the most veteran gamers. Has all the latest features that makes you really badass', 850, 0, 2, true);
+insert into products (id, name, description, price, stock, category_id, for_sale) values (8, 'Gamer keyboard XL', 'The perfect gamer keyboard for serious gamers and people who wants to destroy their wallets', 2950, 12, 2, true);
+insert into products (id, name, description, price, stock, category_id, for_sale) values (9, 'Office keyboard', 'A standard keyboard. Good for office work and other productive tasks', 40, 42, 2, true);
+insert into products (id, name, description, price, stock, category_id, for_sale) values (10, 'Ergonomic keyboard', 'An ergonomic keyboard that will protect your wrists from keyboard syndrome', 59, 5, 2, true);
+insert into products (id, name, description, price, stock, category_id, for_sale) values (11, 'Ergonomic gamer keyboard', 'Identical to the ergonomic keyboard, except it has a new logo and a higher price tag', 900, 2, 2, true);
 
 
 #mice
-insert into products (id, name, description, price, stock, category_id) values (12, 'Ergonomic mouse', 'An ergonomic mouse that will protect your wrists from falling off', 30, 2, 3);
-insert into products (id, name, description, price, stock, category_id) values (13, 'Ergonomic gamer mouse', 'The ergonomic mouse is back, more expensive than ever.', 300, 4, 3);
-insert into products (id, name, description, price, stock, category_id) values (14, 'RPG mouse', 'This mouse is a great addition to WoW gamers. Has 400 side buttons', 320, 6, 3);
-insert into products (id, name, description, price, stock, category_id) values (15, 'Mouse', 'Standard mouse. good for office work and other productive use', 2, 6, 3);
+insert into products (id, name, description, price, stock, category_id, for_sale) values (12, 'Ergonomic mouse', 'An ergonomic mouse that will protect your wrists from falling off', 30, 2, 3, true);
+insert into products (id, name, description, price, stock, category_id, for_sale) values (13, 'Ergonomic gamer mouse', 'The ergonomic mouse is back, more expensive than ever.', 300, 4, 3, true);
+insert into products (id, name, description, price, stock, category_id, for_sale) values (14, 'RPG mouse', 'This mouse is a great addition to WoW gamers. Has 400 side buttons', 320, 6, 3, true);
+insert into products (id, name, description, price, stock, category_id, for_sale) values (15, 'Mouse', 'Standard mouse. good for office work and other productive use', 2, 6, 3, true);
 
 
 #monitors
-insert into products (id, name, description, price, stock, category_id) values (16, 'monitor', 'Standard 4:3 monitor. perfect for people stuck in the past', 20, 6, 4);
-insert into products (id, name, description, price, stock, category_id) values (17, 'monitor HD', 'Standard 1080p monitor. Enjoy a crystal clear image on this beauty', 45, 6, 4);
-insert into products (id, name, description, price, stock, category_id) values (18, 'UltraW xtreme', 'Ultrawide monitor for the serious money spenders. 649:9 aspect ratio.', 2000, 6, 4);
-insert into products (id, name, description, price, stock, category_id) values (19, 'UltraW xtreme XL', 'Even wider monitor for people with fisheyes. Great visuals like you havve enver seen before.', 2001, 6, 4);
-insert into products (id, name, description, price, stock, category_id) values (20, '360 dome', 'A monitor that goes full circle. Enjoy the full 360 degrees of spectatular visuals', 3600, 6, 4);
+insert into products (id, name, description, price, stock, category_id, for_sale) values (16, 'monitor', 'Standard 4:3 monitor. perfect for people stuck in the past', 20, 6, 4, true);
+insert into products (id, name, description, price, stock, category_id, for_sale) values (17, 'monitor HD', 'Standard 1080p monitor. Enjoy a crystal clear image on this beauty', 45, 6, 4, true);
+insert into products (id, name, description, price, stock, category_id, for_sale) values (18, 'UltraW xtreme', 'Ultrawide monitor for the serious money spenders. 649:9 aspect ratio.', 2000, 6, 4, true);
+insert into products (id, name, description, price, stock, category_id, for_sale) values (19, 'UltraW xtreme XL', 'Even wider monitor for people with fisheyes. Great visuals like you havve enver seen before.', 2001, 6, 4, true);
+insert into products (id, name, description, price, stock, category_id, for_sale) values (20, '360 dome', 'A monitor that goes full circle. Enjoy the full 360 degrees of spectatular visuals', 3600, 6, 4, true);
 
 
 
