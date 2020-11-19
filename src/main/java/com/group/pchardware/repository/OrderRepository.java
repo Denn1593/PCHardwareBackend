@@ -1,14 +1,13 @@
 package com.group.pchardware.repository;
 
 import com.group.pchardware.model.Order;
-import com.group.pchardware.model.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 
-public interface OrderRepository  extends JpaRepository<Product, Integer> {
+public interface OrderRepository  extends JpaRepository<Order, Integer> {
     @Query(value =
             "SELECT orders.id, orders.date, products.name, order_items.amount, order_items.unit_price, status.name" +
             "FROM orders" +
