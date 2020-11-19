@@ -1,20 +1,35 @@
 package com.group.pchardware.model;
 
 import javax.persistence.*;
+import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 
 @Entity
-@Table(name = "order")
+@Table(name = "orders")
 public class Order {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private Date date;
     private int customer_id;
     private int employee_id;
     private int status_id;
-    private int orderAudit_id;
     private int paymentMethod_id;
+
+    @OneToMany
+    @JoinColumn(name = "order_id")
+    private List<OrderItem> orderItems;
+
+    public List<OrderItem> getOrderItems()
+    {
+        return orderItems;
+    }
+
+    public void setOrderItems(List<OrderItem> orderItems)
+    {
+        this.orderItems = orderItems;
+    }
 
     public int getId() {
         return id;
@@ -54,14 +69,6 @@ public class Order {
 
     public void setStatus_id(int status_id) {
         this.status_id = status_id;
-    }
-
-    public int getOrderAudit_id() {
-        return orderAudit_id;
-    }
-
-    public void setOrderAudit_id(int orderAudit_id) {
-        this.orderAudit_id = orderAudit_id;
     }
 
     public int getPaymentMethod_id() {

@@ -121,17 +121,12 @@ CREATE TABLE IF NOT EXISTS `PCHardwareV1`.`orders` (
   `customer_id` INT NULL DEFAULT NULL,
   `employee_id` INT NULL DEFAULT NULL,
   `status_id` INT NULL DEFAULT NULL,
-  `order_audit_id` INT NULL DEFAULT NULL,
   `payment_method_id` INT NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   INDEX `FKOrders911524` (`customer_id` ASC) VISIBLE,
   INDEX `FKOrders418421` (`employee_id` ASC) VISIBLE,
   INDEX `FKOrders691899` (`status_id` ASC) VISIBLE,
-  INDEX `FKOrders247750` (`order_audit_id` ASC) VISIBLE,
   INDEX `FKOrders710015` (`payment_method_id` ASC) VISIBLE,
-  CONSTRAINT `FKOrders247750`
-    FOREIGN KEY (`order_audit_id`)
-    REFERENCES `PCHardwareV1`.`order_audits` (`id`),
   CONSTRAINT `FKOrders418421`
     FOREIGN KEY (`employee_id`)
     REFERENCES `PCHardwareV1`.`employees` (`id`),
