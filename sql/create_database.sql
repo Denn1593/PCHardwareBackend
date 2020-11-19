@@ -51,7 +51,7 @@ CREATE TABLE IF NOT EXISTS `PCHardwareV1`.`employees` (
   `address` VARCHAR(255) NULL DEFAULT NULL,
   `last_name` VARCHAR(30) NULL DEFAULT NULL,
   `zip` INT NULL DEFAULT NULL,
-  `Country` VARCHAR(30) NULL DEFAULT NULL,
+  `country` VARCHAR(30) NULL DEFAULT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
@@ -121,17 +121,12 @@ CREATE TABLE IF NOT EXISTS `PCHardwareV1`.`orders` (
   `customer_id` INT NULL DEFAULT NULL,
   `employee_id` INT NULL DEFAULT NULL,
   `status_id` INT NULL DEFAULT NULL,
-  `order_audit_id` INT NULL DEFAULT NULL,
   `payment_method_id` INT NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   INDEX `FKOrders911524` (`customer_id` ASC) VISIBLE,
   INDEX `FKOrders418421` (`employee_id` ASC) VISIBLE,
   INDEX `FKOrders691899` (`status_id` ASC) VISIBLE,
-  INDEX `FKOrders247750` (`order_audit_id` ASC) VISIBLE,
   INDEX `FKOrders710015` (`payment_method_id` ASC) VISIBLE,
-  CONSTRAINT `FKOrders247750`
-    FOREIGN KEY (`order_audit_id`)
-    REFERENCES `PCHardwareV1`.`order_audits` (`id`),
   CONSTRAINT `FKOrders418421`
     FOREIGN KEY (`employee_id`)
     REFERENCES `PCHardwareV1`.`employees` (`id`),
@@ -201,17 +196,13 @@ CREATE TABLE IF NOT EXISTS `PCHardwareV1`.`products` (
   `description` VARCHAR(1000) NULL DEFAULT NULL,
   `price` INT NULL DEFAULT NULL,
   `stock` INT NULL DEFAULT NULL,
+  `for_sale` BOOL NULL DEFAULT NULL,
   `category_id` INT NULL DEFAULT NULL,
-  `order_item_id` INT NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   INDEX `FKProducts160638` (`category_id` ASC) VISIBLE,
-  INDEX `FKProducts25864` (`order_item_id` ASC) VISIBLE,
   CONSTRAINT `FKProducts160638`
     FOREIGN KEY (`category_id`)
-    REFERENCES `PCHardwareV1`.`product_categories` (`id`),
-  CONSTRAINT `FKProducts25864`
-    FOREIGN KEY (`order_item_id`)
-    REFERENCES `PCHardwareV1`.`order_items` (`id`))
+    REFERENCES `PCHardwareV1`.`product_categories` (`id`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;

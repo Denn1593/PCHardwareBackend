@@ -1,6 +1,7 @@
 package com.group.pchardware.controller;
 
 import com.group.pchardware.model.Order;
+import com.group.pchardware.repository.OrderItemRepository;
 import com.group.pchardware.repository.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -13,6 +14,9 @@ public class OrderController {
 
     @Autowired
     OrderRepository orderRepository;
+
+    @Autowired
+    OrderItemRepository orderItemRepository;
 
     @GetMapping("/all")
     public List<Order> getAllOrders() {
@@ -37,4 +41,16 @@ public class OrderController {
        return orderRepository.updateOrderStatus(statusID, id);
     }
 
+    @PostMapping("/place")
+    public Order placeOrder(@RequestBody Order order)
+    {
+        orderRepository.save(order);
+
+        for (int i = 0; i < order.getOrderItems().size(); i++)
+        {
+            orderItemRepository.save(order.getOrderItems().get(i));
+        }
+
+        return order;
+    }
 }

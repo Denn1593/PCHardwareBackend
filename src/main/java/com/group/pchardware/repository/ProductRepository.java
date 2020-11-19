@@ -19,4 +19,6 @@ public interface ProductRepository extends JpaRepository<Product, Integer>
 
     @Query(value = "select * from product where match(name, description) against(?1)", nativeQuery = true)
     public List<Product> search(String query);
+
+    public void deleteById(int id);
 }
