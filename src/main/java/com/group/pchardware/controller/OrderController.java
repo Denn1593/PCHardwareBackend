@@ -1,12 +1,9 @@
 package com.group.pchardware.controller;
 
 import com.group.pchardware.model.Order;
-import com.group.pchardware.model.OrderItem;
 import com.group.pchardware.repository.OrderItemRepository;
 import com.group.pchardware.repository.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -22,26 +19,26 @@ public class OrderController {
     OrderItemRepository orderItemRepository;
 
     @GetMapping("/all")
-    public ResponseEntity<List<Order>> getAllOrders() {
-        return new ResponseEntity<>(orderRepository.findAllOrders(), HttpStatus.OK);
+    public List<Order> getAllOrders() {
+        return orderRepository.findAllOrders();
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Order> getOrderById(@PathVariable(value = "id") int id)
+    public Order getOrderById(@PathVariable(value = "id") int id)
     {
-        return new ResponseEntity<>(orderRepository.findById(id), HttpStatus.OK);
+        return orderRepository.findById(id);
     }
 
     @GetMapping("/status/{id}")
-    public ResponseEntity<String> getOrderStatus(@PathVariable(value = "id") int id)
+    public String getOrderStatus(@PathVariable(value = "id") int id)
     {
-        return new ResponseEntity<>(orderRepository.status(orderRepository.findById(id).getStatus_id()), HttpStatus.OK);
+        return orderRepository.status(orderRepository.findById(id).getStatus_id());
     }
 
     @PutMapping("/changeStatus/{id}/{statusID}")
-    public ResponseEntity<Integer> putOrderStatus(@PathVariable(value = "id") int id, @PathVariable(value = "statusID") int statusID)
+    public Integer putOrderStatus(@PathVariable(value = "id") int id, @PathVariable(value = "statusID") int statusID)
     {
-       return new ResponseEntity<>(orderRepository.updateOrderStatus(statusID, id), HttpStatus.OK);
+       return orderRepository.updateOrderStatus(statusID, id);
     }
 
     @PostMapping("/place")

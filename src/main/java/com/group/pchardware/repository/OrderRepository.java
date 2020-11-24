@@ -1,7 +1,6 @@
 package com.group.pchardware.repository;
 
 import com.group.pchardware.model.Order;
-import com.group.pchardware.model.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
