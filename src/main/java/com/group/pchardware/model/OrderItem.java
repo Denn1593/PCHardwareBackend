@@ -3,7 +3,7 @@ package com.group.pchardware.model;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "order_item")
+@Table(name = "order_items")
 public class OrderItem
 {
     @Id
@@ -11,34 +11,35 @@ public class OrderItem
     private int id;
 
     private int unitprice;
-    private int product_id;
 
-    @ManyToOne
-    @JoinColumn(name = "order_id")
-    private Order order;
+    @Column(name = "product_id")
+    private int productId;
+
+    @Column(name = "order_id")
+    private int orderId;
 
     @ManyToOne
     @JoinColumn(name = "product_id", insertable = false, updatable = false)
     private Product product;
 
-    public Order getOrder()
+    public int getOrderId()
     {
-        return order;
+        return orderId;
     }
 
-    public void setOrder(Order order)
+    public void setOrderId(int orderId)
     {
-        this.order = order;
+        this.orderId = orderId;
     }
 
-    public int getProduct_id()
+    public int getProductId()
     {
-        return product_id;
+        return productId;
     }
 
-    public void setProduct_id(int product_id)
+    public void setProductId(int productId)
     {
-        this.product_id = product_id;
+        this.productId = productId;
     }
 
     public int getId()
