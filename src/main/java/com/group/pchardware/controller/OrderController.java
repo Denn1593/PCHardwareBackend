@@ -35,10 +35,10 @@ public class OrderController {
         return orderRepository.status(orderRepository.findById(id).getStatus_id());
     }
 
-    @PutMapping("/changeStatus/{id}/{statusID}")
-    public Integer putOrderStatus(@PathVariable(value = "id") int id, @PathVariable(value = "statusID") int statusID)
+    @PutMapping("/changestatus/{id}/{statusid}")
+    public Integer putOrderStatus(@PathVariable(value = "id") int id, @PathVariable(value = "statusid") int statusId)
     {
-       return orderRepository.updateOrderStatus(statusID, id);
+       return orderRepository.updateOrderStatus(statusId, id);
     }
 
     @PostMapping("/place")

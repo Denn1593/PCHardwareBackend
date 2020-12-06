@@ -31,7 +31,7 @@ CREATE TABLE IF NOT EXISTS `PCHardwareV1`.`customers` (
   `phone` VARCHAR(20) NULL DEFAULT NULL,
   `email` VARCHAR(100) NULL DEFAULT NULL,
   `zip` INT NULL DEFAULT NULL,
-  `Country` VARCHAR(30) NULL DEFAULT NULL,
+  `country` VARCHAR(30) NULL DEFAULT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
@@ -142,7 +142,6 @@ CREATE TABLE IF NOT EXISTS `PCHardwareV1`.`orders` (
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
-
 
 -- -----------------------------------------------------
 -- Table `PCHardwareV1`.`order_items`
