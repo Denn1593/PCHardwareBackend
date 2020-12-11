@@ -18,6 +18,17 @@ public class Employee
     private String last_name;
     private int zip;
     private String country;
+    private boolean employed;
+
+    public boolean isEmployed()
+    {
+        return employed;
+    }
+
+    public void setEmployed(boolean employed)
+    {
+        this.employed = employed;
+    }
 
     public int getId()
     {

@@ -11,31 +11,34 @@ public class Product
     private int id;
     private String name;
     private String description;
-    private String article_number;
+    @Column(name = "article_number")
+    private String articleNumber;
     private String manufacturer;
-    private boolean for_sale;
+    @Column(name = "for_sale")
+    private boolean forSale;
     private int price;
     private int stock;
-    private int category_id;
+    @Column(name = "category_id")
+    private int categoryId;
 
-    public boolean isFor_sale()
+    public boolean isForSale()
     {
-        return for_sale;
+        return forSale;
     }
 
-    public void setFor_sale(boolean for_sale)
+    public void setForSale(boolean forSale)
     {
-        this.for_sale = for_sale;
+        this.forSale = forSale;
     }
 
-    public String getArticle_number()
+    public String getArticleNumber()
     {
-        return article_number;
+        return articleNumber;
     }
 
-    public void setArticle_number(String article_number)
+    public void setArticleNumber(String articleNumber)
     {
-        this.article_number = article_number;
+        this.articleNumber = articleNumber;
     }
 
     public String getManufacturer()
@@ -98,13 +101,13 @@ public class Product
         this.stock = stock;
     }
 
-    public int getCategory_id()
+    public int getCategoryId()
     {
-        return category_id;
+        return categoryId;
     }
 
-    public void setCategory_id(int category_id)
+    public void setCategoryId(int categoryId)
     {
-        this.category_id = category_id;
+        this.categoryId = categoryId;
     }
 }

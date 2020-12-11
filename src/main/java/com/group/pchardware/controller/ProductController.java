@@ -1,7 +1,8 @@
 package com.group.pchardware.controller;
 
-import com.group.pchardware.model.Employee;
+import com.group.pchardware.model.Category;
 import com.group.pchardware.model.Product;
+import com.group.pchardware.repository.CategoryRepository;
 import com.group.pchardware.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,6 +17,9 @@ public class ProductController
 {
     @Autowired
     ProductRepository productRepository;
+
+    @Autowired
+    CategoryRepository categoryRepository;
 
     @GetMapping("/all")
     public ResponseEntity<List<Product>> getAllProducts()
@@ -32,7 +36,7 @@ public class ProductController
     @GetMapping("/category/{id}")
     public ResponseEntity<List<Product>> getProductsByCategory(@PathVariable(value = "id") int id)
     {
-        return new ResponseEntity<List<Product>>(productRepository.findAllByCategory(id), HttpStatus.OK);
+        return new ResponseEntity<List<Product>>(productRepository.findByCategoryId(id), HttpStatus.OK);
     }
 
     @GetMapping("/search")
@@ -67,8 +71,16 @@ public class ProductController
     public ResponseEntity deleteProduct(@PathVariable(value = "id") int id)
     {
         Product product = productRepository.findById(id);
-        product.setFor_sale(false);
+        product.setForSale(false);
         productRepository.save(product);
+        return new ResponseEntity(HttpStatus.OK);
+    }
+
+    @PostMapping("/category/new")
+    public ResponseEntity addCategory(@RequestBody Category category)
+    {
+        categoryRepository.save(category);
+
         return new ResponseEntity(HttpStatus.OK);
     }
 }

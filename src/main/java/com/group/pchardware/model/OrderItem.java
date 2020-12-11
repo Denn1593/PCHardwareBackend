@@ -1,5 +1,7 @@
 package com.group.pchardware.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 @Entity
@@ -13,9 +15,11 @@ public class OrderItem
     private int unitprice;
 
     @Column(name = "product_id")
+    @JsonIgnore
     private int productId;
 
     @Column(name = "order_id")
+    @JsonIgnore
     private int orderId;
 
     @ManyToOne

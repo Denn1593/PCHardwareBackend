@@ -1,7 +1,6 @@
 package com.group.pchardware.model;
 
 import javax.persistence.*;
-import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
@@ -12,10 +11,18 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private Date date;
-    private int customer_id;
-    private int employee_id;
-    private int status_id;
-    private int paymentMethod_id;
+
+    @Column(name = "customer_id")
+    private int customerId;
+
+    @Column(name = "employee_id")
+    private int employeeId;
+
+    @Column(name = "status_id")
+    private int statusId;
+
+    @Column(name = "paymentmethod_id")
+    private int paymentMethodId;
 
     @OneToMany
     @JoinColumn(name = "order_id")
@@ -47,35 +54,35 @@ public class Order {
         this.date = date;
     }
 
-    public int getCustomer_id() {
-        return customer_id;
+    public int getCustomerId() {
+        return customerId;
     }
 
-    public void setCustomer_id(int customer_id) {
-        this.customer_id = customer_id;
+    public void setCustomerId(int customerId) {
+        this.customerId = customerId;
     }
 
-    public int getEmployee_id() {
-        return employee_id;
+    public int getEmployeeId() {
+        return employeeId;
     }
 
-    public void setEmployee_id(int employee_id) {
-        this.employee_id = employee_id;
+    public void setEmployeeId(int employeeId) {
+        this.employeeId = employeeId;
     }
 
-    public int getStatus_id() {
-        return status_id;
+    public int getStatusId() {
+        return statusId;
     }
 
-    public void setStatus_id(int status_id) {
-        this.status_id = status_id;
+    public void setStatusId(int statusId) {
+        this.statusId = statusId;
     }
 
-    public int getPaymentMethod_id() {
-        return paymentMethod_id;
+    public int getPaymentMethodId() {
+        return paymentMethodId;
     }
 
-    public void setPaymentMethod_id(int paymentMethod_id) {
-        this.paymentMethod_id = paymentMethod_id;
+    public void setPaymentMethodId(int paymentMethodId) {
+        this.paymentMethodId = paymentMethodId;
     }
 }

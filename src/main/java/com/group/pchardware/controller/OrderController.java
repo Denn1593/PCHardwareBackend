@@ -32,7 +32,7 @@ public class OrderController {
     @GetMapping("/status/{id}")
     public String getOrderStatus(@PathVariable(value = "id") int id)
     {
-        return orderRepository.status(orderRepository.findById(id).getStatus_id());
+        return orderRepository.status(orderRepository.findById(id).getStatusId());
     }
 
     @PutMapping("/changeStatus/{id}/{statusID}")
@@ -42,15 +42,25 @@ public class OrderController {
     }
 
     @PostMapping("/place")
-    public Order placeOrder(@RequestBody Order order)
+    public Integer placeOrder(@RequestBody Order order)
     {
-        orderRepository.save(order);
+        String idList = "";
+        String quantityList = "";
 
         for (int i = 0; i < order.getOrderItems().size(); i++)
         {
-            orderItemRepository.save(order.getOrderItems().get(i));
+            idList += "" + order.getOrderItems().get(i).getProduct().getId();
+            quantityList += "" + order.getOrderItems().get(i).getProduct().getId();
+
+            if(i < order.getOrderItems().size())
+            {
+                idList += ",";
+                quantityList += ",";
+            }
         }
 
-        return order;
+        orderRepository.create_order(order.getCustomerId(), order.getPaymentMethodId(), order.getEmployeeId(), idList, quantityList);
+
+        return 1;
     }
 }

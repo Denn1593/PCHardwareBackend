@@ -152,7 +152,7 @@ DROP TABLE IF EXISTS `PCHardwareV1`.`order_items` ;
 CREATE TABLE IF NOT EXISTS `PCHardwareV1`.`order_items` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `amount` INT NULL DEFAULT NULL,
-  `unitprice` INT NULL DEFAULT NULL,
+  `unit_price` INT NULL DEFAULT NULL,
   `order_id` INT NULL DEFAULT NULL,
   `product_id` INT NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
@@ -232,6 +232,17 @@ CREATE TABLE IF NOT EXISTS `PCHardwareV1`.`reviews` (
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
+
+
+create view sold_products as SELECT 
+    products.id, products.name, products.article_number, products.description, products.price, COUNT(amount) AS sold_count
+FROM
+    products
+        JOIN
+    order_items ON product_id = products.id
+GROUP BY products.id;
+
+
 
 
 SET SQL_MODE=@OLD_SQL_MODE;

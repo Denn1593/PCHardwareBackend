@@ -21,4 +21,8 @@ public interface OrderRepository  extends JpaRepository<Order, Integer> {
     @Modifying
     @Query(value = "UPDATE orders SET statusID = ? WHERE id = ? ", nativeQuery= true)
     int updateOrderStatus(Integer statusID, Integer orderID);
+
+    @Modifying
+    @Query(value = "call create_order(?, ?, ?, ?, ?)", nativeQuery = true)
+    void create_order(int customerId, int paymentMethod, int employeeId, String productIdList, String productQuantityList);
 }

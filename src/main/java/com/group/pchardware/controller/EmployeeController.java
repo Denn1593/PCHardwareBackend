@@ -36,5 +36,12 @@ public class EmployeeController
         return new ResponseEntity(employeeRepository.save(employee), HttpStatus.OK);
     }
 
-
+    @PutMapping("/fire/{id}")
+    public ResponseEntity fireEmployee(@PathVariable int id)
+    {
+        Employee e = employeeRepository.findById(id);
+        e.setEmployed(false);
+        employeeRepository.save(e);
+        return new ResponseEntity(HttpStatus.OK);
+    }
 }
