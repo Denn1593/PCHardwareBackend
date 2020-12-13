@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Reviews</title>
+</head>
+<body>
+<h1>Create reviews</h1>
+<form action="#" th:action="@{/products/createProduct}" th:object="${product}" method="post">
+
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" th:object="${name}" ><br><br>
+
+    <label for="description">Description:</label>
+    <textarea type="text" id="description" name="description" th:object="${description}"></textarea><br><br>
+
+    <label for="article_number">Article Number:</label>
+    <input type="text" id="article_number" name="article_number" th:object="${article_number}"><br><br>
+
+    <label for="manufacturer">Manufacturer:</label>
+    <input type="text" id="manufacturer" name="manufacturer" th:object="${manufacturer}"><br><br>
+
+    <label for="for_sale">For sale:</label>
+    <input type="text" id="for_sale" name="for_sale" th:object="${for_sale}"><br><br>
+
+    <label for="price">Price:</label>
+    <input type="text" id="price" name="price" th:object="${price}"><br><br>
+
+    <label for="stock">Stock:</label>
+    <input type="text" id="stock" name="stock" th:object="${stock}"><br><br>
+
+    <label for="category_id">Category ID:</label>
+    <input type="text" id="category_id" name="category_id" th:object="${category_id}"><br><br>
+
+<!--    <a th:href="@{products}">-->
+    <input method="POST" type="submit" th:value="#{form.submit}">
+</form>
+
+</body>
+</html>

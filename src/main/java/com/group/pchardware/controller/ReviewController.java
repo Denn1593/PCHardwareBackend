@@ -26,22 +26,8 @@ public class ReviewController {
     public String createReview(Review review) {
 
         reviewRepository.save(review);
-//        model.addAttribute("review", review);
 
-        return "reviews/listReviews";
-    }
-
-
-    @RequestMapping("/reviews/createReviewsssss")
-    public @ResponseBody String createReviewsss(Model model, @RequestParam int rating, @RequestParam String title, @RequestParam String comment, @RequestParam int customer_id, @RequestParam int product_id) {
-        Review r = new Review();
-        r.setRating(rating);
-        r.setTitle(title);
-        r.setComment(comment);
-        r.setCustomer_id(customer_id);
-        r.setProduct_id(product_id);
-        model.addAttribute("createReview", reviewRepository.save(r));
-        return "reviews/createReviews";
+        return "redirect:/reviews";
     }
 
     @PutMapping("/reviews/updateReview/{id}")

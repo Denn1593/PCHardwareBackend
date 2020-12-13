@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Products</title>
+</head>
+<body>
+<h1>Products</h1>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Article Number</th>
+        <th>Manufacturer</th>
+        <th>For sale</th>
+        <th>Price</th>
+        <th>Stock</th>
+        <th>Category ID</th>
+    </tr>
+    <tr th:each="product : ${products}">
+        <td th:text="${product.id}"></td>
+        <td th:text="${product.name}"></td>
+        <td th:text="${product.description}"></td>
+        <td th:text="${product.article_number}"></td>
+        <td th:text="${product.manufacturer}"></td>
+        <td th:text="${product.for_sale}"></td>
+        <td th:text="${product.price}"></td>
+        <td th:text="${product.stock}"></td>
+        <td th:text="${product.category_id}"></td>
+    </tr>
+</table>
+
+</body>
+</html>
