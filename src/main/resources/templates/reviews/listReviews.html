@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Reviews</title>
+</head>
+<body>
+    <h1>Reviews Created</h1>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Rating</th>
+            <th>Title</th>
+            <th>Comment</th>
+            <th>Customer_ID</th>
+            <th>Product_ID</th>
+        </tr>
+        <tr th:each="review : ${reviews}">
+            <td th:text="${review.id}"></td>
+            <td th:text="${review.rating}"></td>
+            <td th:text="${review.title}"></td>
+            <td th:text="${review.comment}"></td>
+            <td th:text="${review.customer_id}"></td>
+            <td th:text="${review.product_id}"></td>
+        </tr>
+    </table>
+
+</body>
+</html>
