@@ -2,17 +2,22 @@ package com.group.pchardware.controller;
 
 import com.group.pchardware.model.Category;
 import com.group.pchardware.model.Product;
+<<<<<<< HEAD
 import com.group.pchardware.repository.CategoryRepository;
+=======
+import com.group.pchardware.model.Review;
+>>>>>>> 0d72c5c9febac04fe131c5dd8c7358161cb9f4ff
 import com.group.pchardware.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController
-@RequestMapping("/products")
+@Controller
 public class ProductController
 {
     @Autowired
@@ -21,42 +26,54 @@ public class ProductController
     @Autowired
     CategoryRepository categoryRepository;
 
-    @GetMapping("/all")
-    public ResponseEntity<List<Product>> getAllProducts()
+    @RequestMapping("/products")
+    public String getAllProducts(Model model)
     {
-        return new ResponseEntity<List<Product>>(productRepository.findAllProducts(), HttpStatus.OK);
+        model.addAttribute("products", productRepository.findAll());
+
+        return "products/listProducts";
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/products/{id}")
     public ResponseEntity<Product> getProductById(@PathVariable(value = "id") int id)
     {
         return new ResponseEntity<Product>(productRepository.findById(id), HttpStatus.OK);
     }
 
-    @GetMapping("/category/{id}")
+    @GetMapping("/products/category/{id}")
     public ResponseEntity<List<Product>> getProductsByCategory(@PathVariable(value = "id") int id)
     {
         return new ResponseEntity<List<Product>>(productRepository.findByCategoryId(id), HttpStatus.OK);
     }
 
-    @GetMapping("/search")
+    @GetMapping("/productssearch")
     public ResponseEntity<List<Product>> searchForProducts(@RequestParam String query)
     {
         return new ResponseEntity<List<Product>>(productRepository.search(query), HttpStatus.OK);
     }
 
-    @PostMapping("/new")
-    public ResponseEntity newEmployee(@RequestBody Product product)
-    {
-        if(product.getId() != 0)
-        {
-            return new ResponseEntity(HttpStatus.BAD_REQUEST);
-        }
 
-        return new ResponseEntity(productRepository.save(product), HttpStatus.OK);
+
+
+    @GetMapping("/products/formProduct")
+    public String createProductForm(Model model) {
+
+        model.addAttribute("product", new Product());
+
+        return "products/createProduct";
+
     }
 
-    @PutMapping("/modify")
+    @PostMapping("/products/createProduct")
+    public String createProduct(Product product) {
+
+        productRepository.save(product);
+
+        return "redirect:/products";
+    }
+
+
+    @PutMapping("/products/modify")
     public ResponseEntity modifyEmployee(@RequestBody Product product)
     {
         if(productRepository.findById(product.getId()) == null)
@@ -67,7 +84,7 @@ public class ProductController
         return new ResponseEntity(productRepository.save(product), HttpStatus.OK);
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/products/delete/{id}")
     public ResponseEntity deleteProduct(@PathVariable(value = "id") int id)
     {
         Product product = productRepository.findById(id);

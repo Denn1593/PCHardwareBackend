@@ -16,12 +16,9 @@ public class Review {
 
     private int rating;
     private String title;
-        private String comment;
+    private String comment;
     private int customer_id;
     private int product_id;
-
-    public Review() {
-    }
 
     public Review(int rating, String title, String comment, int customer_id, int product_id) {
         this.rating = rating;
@@ -29,6 +26,9 @@ public class Review {
         this.comment = comment;
         this.customer_id = customer_id;
         this.product_id = product_id;
+    }
+
+    public Review() {
     }
 
     @Override

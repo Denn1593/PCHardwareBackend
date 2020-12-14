@@ -2,23 +2,28 @@ package com.group.pchardware.repository;
 
 import com.group.pchardware.model.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.http.HttpStatus;
 
 import java.util.List;
 
-public interface ProductRepository extends JpaRepository<Product, Integer>
-{
-    @Query(value = "select * from product", nativeQuery = true)
-    public List<Product> findAllProducts();
+public interface ProductRepository extends JpaRepository<Product, Integer> {
+    @Override
+    @Query(value = "SELECT * FROM products", nativeQuery = true)
+    List<Product> findAll();
 
-    public Product findById(int id);
+    Product findById(int id);
+    
+    @Query(value = "SELECT * FROM products WHERE products.category_id = ?1", nativeQuery = true)
+    List<Product> findAllByCategory(int categoryId);
 
-    //@Query(value = "select * from product where product.category_id = ?1", nativeQuery = true)
-    public List<Product> findByCategoryId(int categoryId);
+    @Query(value = "SELECT * FROM products WHERE MATCH(name, description) AGAINST (?1)", nativeQuery = true)
+    List<Product> search(String query);
 
-    @Query(value = "select * from product where match(name, description) against(?1)", nativeQuery = true)
-    public List<Product> search(String query);
 
-    public void deleteById(int id);
+    @Modifying
+    @Query(value = "INSERT INTO products (name, description, article_number, manufacturer, for_sale, price, stock, category_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?)", nativeQuery= true)
+    void createReview(String name, String description, String article_number, String manufacturer, boolean for_sale, int price, int stock, int category_id);
+
+    void deleteById(int id);
 }
