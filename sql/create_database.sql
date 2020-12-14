@@ -31,7 +31,7 @@ CREATE TABLE IF NOT EXISTS `PCHardwareV1`.`customers` (
   `phone` VARCHAR(20) NULL DEFAULT NULL,
   `email` VARCHAR(100) NULL DEFAULT NULL,
   `zip` INT NULL DEFAULT NULL,
-  `country` VARCHAR(30) NULL DEFAULT NULL,
+  `Country` VARCHAR(30) NULL DEFAULT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
@@ -143,6 +143,7 @@ ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
+
 -- -----------------------------------------------------
 -- Table `PCHardwareV1`.`order_items`
 -- -----------------------------------------------------
@@ -181,6 +182,20 @@ ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
+-- -----------------------------------------------------
+-- Table `PCHardwareV1`.`manufacturers`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `PCHardwareV1`.`manufacturers` ;
+
+CREATE TABLE IF NOT EXISTS `PCHardwareV1`.`manufacturers` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(30) NULL DEFAULT NULL,
+  `website` VARCHAR(50) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
+
 
 -- -----------------------------------------------------
 -- Table `PCHardwareV1`.`products`
@@ -191,7 +206,7 @@ CREATE TABLE IF NOT EXISTS `PCHardwareV1`.`products` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(255) NULL DEFAULT NULL,
   `article_number` VARCHAR(255) NULL DEFAULT NULL,
-  `manufacturer` VARCHAR(60) NULL DEFAULT NULL,
+  `manufacturer_id` int NULL DEFAULT NULL,
   `description` VARCHAR(1000) NULL DEFAULT NULL,
   `price` INT NULL DEFAULT NULL,
   `stock` INT NULL DEFAULT NULL,
@@ -201,7 +216,10 @@ CREATE TABLE IF NOT EXISTS `PCHardwareV1`.`products` (
   INDEX `FKProducts160638` (`category_id` ASC) VISIBLE,
   CONSTRAINT `FKProducts160638`
     FOREIGN KEY (`category_id`)
-    REFERENCES `PCHardwareV1`.`product_categories` (`id`))
+    REFERENCES `PCHardwareV1`.`product_categories` (`id`),
+  CONSTRAINT `FKProducts160639`
+    FOREIGN KEY (`manufacturer_id`)
+    REFERENCES `PCHardwareV1`.`manufacturers` (`id`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
@@ -232,7 +250,9 @@ ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
-
+-- -----------------------------------------------------
+-- view for sold products
+-- -----------------------------------------------------
 create view sold_products as SELECT 
     products.id, products.name, products.article_number, products.description, products.price, COUNT(amount) AS sold_count
 FROM
@@ -242,6 +262,65 @@ FROM
 GROUP BY products.id;
 
 
+-- -----------------------------------------------------
+-- procedure for creating order
+-- -----------------------------------------------------
+DELIMITER $$
+
+create procedure create_order(var_customer_id int, var_payment_method_id int, var_employee_id int, product_id_list TEXT, product_quantity_list text)
+MODIFIES SQL DATA
+begin
+
+#product_is_list vars
+	declare nexti TEXt default null;
+    declare nextlengthi int default null;
+    declare valuei int default null;
+    
+#product_quantity_list vars
+	declare nextq text default null;
+	declare nextlengthq int default null;
+    declare valueq int default null;
+    
+    declare var_order_id int default null;
+    declare var_price int default null;
+    
+    start transaction;
+    
+    insert into orders(date, customer_id, employee_id, status_id, payment_method_id) values(now(), customer_id, var_employee_id, 1, var_payment_method_id);
+    set var_order_id = last_insert_id();
+    
+    l:
+    loop
+    
+		#if id list is empty
+		if(length(trim(product_id_list)) = 0 or product_id_list is null) then
+			leave l;
+		end if;
+		
+		#if quantity list is empty
+		if(length(trim(product_quantity_list)) = 0 or product_quantity_list is null) then
+			leave l;
+		end if;
+		
+		set nexti = substring_index(product_id_list, ',', 1);
+		set nextlengthi = length(nexti);
+		set valuei = convert(trim(nexti), unsigned integer);
+		
+		set nextq = substring_index(product_quantity_list, ',', 1);
+		set nextlengthq = length(nextq);
+		set valueq = convert(trim(nextq), unsigned integer);
+		select price into var_price from products where id = valuei;
+        
+        select concat('product_id is ', valuei), concat('quantity ', valueq), concat('id list ', product_id_list);
+		
+		insert into order_items (order_id, amount, unit_price, product_id) values(var_order_id, valueq, var_price, valuei);
+        
+        set product_id_list = insert(product_id_list, 1, nextlengthi + 1, '');
+        set product_quantity_list = insert(product_quantity_list, 1, nextlengthq + 1, '');
+    end loop;
+    commit;
+end $$
+delimiter ;
 
 
 SET SQL_MODE=@OLD_SQL_MODE;
