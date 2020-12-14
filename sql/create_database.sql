@@ -66,12 +66,16 @@ DROP TABLE IF EXISTS `PCHardwareV1`.`order_audits` ;
 CREATE TABLE IF NOT EXISTS `PCHardwareV1`.`order_audits` (
   `id` INT NOT NULL UNIQUE AUTO_INCREMENT,
   `date` DATE NULL DEFAULT NULL,
-  `order_id` INT NULL DEFAULT NULL,
+  `order_id` INT NULL DEFAULT NULL, 
+  `status_id` INT NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   INDEX `order_audit_FK` (`order_id` ASC) VISIBLE,
   CONSTRAINT `order_audit_FK`
     FOREIGN KEY (`order_id`)
-    REFERENCES `PCHardwareV1`.`orders` (`id`))
+    REFERENCES `PCHardwareV1`.`orders` (`id`),
+  CONSTRAINT `order_audit_FK34`
+    FOREIGN KEY (`status_id`)
+    REFERENCES `PCHardwareV1`.`status` (`id`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;

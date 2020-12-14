@@ -2,11 +2,7 @@ package com.group.pchardware.controller;
 
 import com.group.pchardware.model.Category;
 import com.group.pchardware.model.Product;
-<<<<<<< HEAD
 import com.group.pchardware.repository.CategoryRepository;
-=======
-import com.group.pchardware.model.Review;
->>>>>>> 0d72c5c9febac04fe131c5dd8c7358161cb9f4ff
 import com.group.pchardware.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
