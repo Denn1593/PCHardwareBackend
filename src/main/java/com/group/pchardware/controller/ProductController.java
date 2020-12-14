@@ -43,7 +43,7 @@ public class ProductController
     @GetMapping("/products/category/{id}")
     public ResponseEntity<List<Product>> getProductsByCategory(@PathVariable(value = "id") int id)
     {
-        return new ResponseEntity<List<Product>>(productRepository.findByCategoryId(id), HttpStatus.OK);
+        return new ResponseEntity<List<Product>>(productRepository.findAllByCategory(id), HttpStatus.OK);
     }
 
     @GetMapping("/productssearch")
