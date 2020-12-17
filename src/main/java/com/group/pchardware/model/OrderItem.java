@@ -12,7 +12,8 @@ public class OrderItem
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    private int unitprice;
+    @Column(name = "unit_price")
+    private int unitPrice;
 
     @Column(name = "product_id")
     @JsonIgnore
@@ -58,12 +59,12 @@ public class OrderItem
 
     public int getUnitprice()
     {
-        return unitprice;
+        return unitPrice;
     }
 
     public void setUnitprice(int unitprice)
     {
-        this.unitprice = unitprice;
+        this.unitPrice = unitprice;
     }
 
     public Product getProduct()

@@ -1,5 +1,7 @@
 package com.group.pchardware.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 @Entity
@@ -13,7 +15,14 @@ public class Product
     private String description;
     @Column(name = "article_number")
     private String articleNumber;
-    private String manufacturer;
+
+    @JsonIgnore
+    @Column(name = "manufacturer_id")
+    private int manufacturerId;
+
+    @ManyToOne
+    @JoinColumn(name = "manufacturer_id", insertable = false, updatable = false)
+    private Manufacturer manufacturer;
     @Column(name = "for_sale")
     private boolean forSale;
     private int price;
@@ -41,14 +50,24 @@ public class Product
         this.articleNumber = articleNumber;
     }
 
-    public String getManufacturer()
-    {
-        return manufacturer;
-    }
-
-    public void setManufacturer(String manufacturer)
+    public void setManufacturer(Manufacturer manufacturer)
     {
         this.manufacturer = manufacturer;
+    }
+
+    public int getManufacturerId()
+    {
+        return manufacturerId;
+    }
+
+    public void setManufacturerId(int manufacturerId)
+    {
+        this.manufacturerId = manufacturerId;
+    }
+
+    public Manufacturer getManufacturer()
+    {
+        return manufacturer;
     }
 
     public int getId()
