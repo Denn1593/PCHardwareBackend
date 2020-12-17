@@ -21,7 +21,7 @@ public class Order {
     @Column(name = "status_id")
     private int statusId;
 
-    @Column(name = "paymentmethod_id")
+    @Column(name = "payment_method_id")
     private int paymentMethodId;
 
     @OneToMany
