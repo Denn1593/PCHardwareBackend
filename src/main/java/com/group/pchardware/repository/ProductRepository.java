@@ -9,12 +9,12 @@ import java.util.List;
 
 public interface ProductRepository extends JpaRepository<Product, Integer> {
     @Override
-    @Query(value = "SELECT * FROM products", nativeQuery = true)
+    @Query(value = "SELECT * FROM products where products.for_sale = true", nativeQuery = true)
     List<Product> findAll();
 
     Product findById(int id);
 
-    @Query(value = "SELECT * FROM products WHERE products.category_id = ?1", nativeQuery = true)
+    @Query(value = "SELECT * FROM products WHERE products.category_id = ?1 and products.for_sale = true", nativeQuery = true)
     List<Product> findAllByCategory(int categoryId);
 
     @Query(value = "SELECT * FROM products WHERE MATCH(name, description) AGAINST (?1)", nativeQuery = true)

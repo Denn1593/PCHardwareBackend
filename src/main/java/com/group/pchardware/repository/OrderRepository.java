@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 public interface OrderRepository  extends JpaRepository<Order, Integer> {
@@ -18,8 +19,9 @@ public interface OrderRepository  extends JpaRepository<Order, Integer> {
     @Query(value = "SELECT name FROM status WHERE status.id = ?", nativeQuery = true)
     String status(Integer id);
 
+    @Transactional
     @Modifying
-    @Query(value = "UPDATE orders SET statusID = ? WHERE id = ? ", nativeQuery= true)
+    @Query(value = "UPDATE orders SET status_id = ? WHERE id = ? ", nativeQuery= true)
     int updateOrderStatus(Integer statusID, Integer orderID);
 
     @Query(value = "call create_order(?, ?, ?, ?, ?)", nativeQuery = true)

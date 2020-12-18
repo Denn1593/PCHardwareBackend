@@ -30,6 +30,12 @@ public class ProductController
         return "products/listProducts";
     }
 
+    @GetMapping("/products/all")
+    public ResponseEntity getAllProducts()
+    {
+        return new ResponseEntity<>(productRepository.findAll(), HttpStatus.OK);
+    }
+
     @GetMapping("/products/{id}")
     public ResponseEntity<Product> getProductById(@PathVariable(value = "id") int id)
     {
@@ -42,7 +48,7 @@ public class ProductController
         return new ResponseEntity<List<Product>>(productRepository.findAllByCategory(id), HttpStatus.OK);
     }
 
-    @GetMapping("/productssearch")
+    @GetMapping("/products/search")
     public ResponseEntity<List<Product>> searchForProducts(@RequestParam String query)
     {
         return new ResponseEntity<List<Product>>(productRepository.search(query), HttpStatus.OK);
@@ -66,6 +72,12 @@ public class ProductController
         productRepository.save(product);
 
         return "redirect:/products";
+    }
+
+    @PostMapping("products/new")
+    public ResponseEntity newProduct(@RequestBody Product product)
+    {
+        return new ResponseEntity(productRepository.save(product), HttpStatus.OK);
     }
 
 

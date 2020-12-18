@@ -22,6 +22,8 @@ public class EmployeeController
             return new ResponseEntity(HttpStatus.BAD_REQUEST);
         }
 
+        employee.setEmployed(true);
+
         return new ResponseEntity(employeeRepository.save(employee), HttpStatus.OK);
     }
 
@@ -34,6 +36,12 @@ public class EmployeeController
         }
 
         return new ResponseEntity(employeeRepository.save(employee), HttpStatus.OK);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Employee> getEmployee(@PathVariable int id)
+    {
+        return new ResponseEntity<>(employeeRepository.findById(id), HttpStatus.OK);
     }
 
     @PutMapping("/fire/{id}")

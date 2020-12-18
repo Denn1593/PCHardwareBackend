@@ -85,4 +85,18 @@ public class Order {
     public void setPaymentMethodId(int paymentMethodId) {
         this.paymentMethodId = paymentMethodId;
     }
+
+    @Override
+    public String toString()
+    {
+        return "Order{" +
+                "id=" + id +
+                ", date=" + date +
+                ", customerId=" + customerId +
+                ", employeeId=" + employeeId +
+                ", statusId=" + statusId +
+                ", paymentMethodId=" + paymentMethodId +
+                ", orderItems=" + orderItems +
+                '}';
+    }
 }

@@ -59,6 +59,8 @@ public class OrderController {
             }
         }
 
+        System.out.println(order);
+
         orderRepository.create_order(order.getCustomerId(), order.getPaymentMethodId(), order.getEmployeeId(), idList, quantityList);
 
         return 1;
