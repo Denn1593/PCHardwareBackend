@@ -15,8 +15,8 @@ public class CustomerController {
     @PostMapping("/new")
     public Integer newCustomer(@RequestBody Customer customer) {
         return customerRepository.newCustomer(
-                customer.getFirst_name(),
-                customer.getLast_name(),
+                customer.getFirstName(),
+                customer.getLastName(),
                 customer.getAddress(),
                 customer.getPhone(),
                 customer.getEmail(),

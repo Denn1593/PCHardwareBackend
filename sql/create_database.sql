@@ -52,6 +52,7 @@ CREATE TABLE IF NOT EXISTS `pchardwarev1`.`employees` (
   `last_name` VARCHAR(30) NULL DEFAULT NULL,
   `zip` INT NULL DEFAULT NULL,
   `country` VARCHAR(30) NULL DEFAULT NULL,
+  `employed` boolean null default true,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
@@ -214,7 +215,7 @@ CREATE TABLE IF NOT EXISTS `pchardwarev1`.`products` (
   `description` VARCHAR(1000) NULL DEFAULT NULL,
   `price` INT NULL DEFAULT NULL,
   `stock` INT NULL DEFAULT NULL,
-  `for_sale` BOOL NOT NULL DEFAULT false,
+  `for_sale` BOOL NOT NULL DEFAULT true,
   `category_id` INT NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   INDEX `FKProducts160638` (`category_id` ASC) VISIBLE,
@@ -297,7 +298,6 @@ delimiter ;
 
 -- -----------------------------------------------------
 -- procedure for creating order
--- -----------------------------------------------------
 DELIMITER $$
 
 create procedure create_order(var_customer_id int, var_payment_method_id int, var_employee_id int, product_id_list TEXT, product_quantity_list text)
@@ -319,7 +319,7 @@ begin
     
     start transaction;
     
-    insert into orders(date, customer_id, employee_id, status_id, payment_method_id) values(now(), customer_id, var_employee_id, 1, var_payment_method_id);
+    insert into orders(date, customer_id, employee_id, status_id, payment_method_id) values(now(), var_customer_id, var_employee_id, 1, var_payment_method_id);
     set var_order_id = last_insert_id();
     
     l:
@@ -354,6 +354,12 @@ begin
     commit;
 end $$
 delimiter ;
+
+-- -----------------------------------------------------
+-- Fulltext index
+-- -----------------------------------------------------
+
+create fulltext index idx_product_name_description on products (name, description);
 
 -- -----------------------------------------------------
 -- Users

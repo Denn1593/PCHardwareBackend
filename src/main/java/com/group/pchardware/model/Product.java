@@ -13,10 +13,10 @@ public class Product
     private int id;
     private String name;
     private String description;
+
     @Column(name = "article_number")
     private String articleNumber;
 
-    @JsonIgnore
     @Column(name = "manufacturer_id")
     private int manufacturerId;
 
@@ -128,5 +128,23 @@ public class Product
     public void setCategoryId(int categoryId)
     {
         this.categoryId = categoryId;
+    }
+
+
+    @Override
+    public String toString()
+    {
+        return "Product{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", articleNumber='" + articleNumber + '\'' +
+                ", manufacturerId=" + manufacturerId +
+                ", manufacturer=" + manufacturer +
+                ", forSale=" + forSale +
+                ", price=" + price +
+                ", stock=" + stock +
+                ", categoryId=" + categoryId +
+                '}';
     }
 }
