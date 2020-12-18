@@ -26,13 +26,19 @@ insert into product_categories (id, name) values (2, 'Keyboards');
 insert into product_categories (id, name) values (3, 'Mice');
 insert into product_categories (id, name) values (4, 'Monitors');
 
-
 #insert manufacturers
 truncate table manufacturers;
 
 insert into manufacturers (id, name, website) values (1, 'razer', 'www.razer.com');
 insert into manufacturers (id, name, website) values (2, 'microsoft', 'www.microsoft.com');
 insert into manufacturers (id, name, website) values (3, 'asus', 'www.asus.com');
+insert into manufacturers (id, name, website) values (4, 'Lenovo', 'www.lenovo.com');
+insert into manufacturers (id, name, website) values (5, 'Apple', 'www.apple.com');
+insert into manufacturers (id, name, website) values (6, 'Epson', 'www.epson.com');
+insert into manufacturers (id, name, website) values (7, 'Samsung', 'www.samsung.com');
+insert into manufacturers (id, name, website) values (8, 'HP Inc.', 'www.hp.com');
+insert into manufacturers (id, name, website) values (9, 'Vogels', 'www.vogels.com');
+insert into manufacturers (id, name, website) values (10, 'LG Electronics', 'www.lg.com');
 
 
 #insert products

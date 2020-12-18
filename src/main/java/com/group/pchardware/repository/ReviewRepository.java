@@ -17,7 +17,7 @@ public interface ReviewRepository extends JpaRepository<Review, Integer> {
 
     @Modifying
     @Query(value = "INSERT INTO reviews (rating, title, comment, customer_id, product_id) VALUES (?, ?, ?, ?, ?)", nativeQuery= true)
-    void createReview(int rating, String title, String comment, int customer_id, int product_id);
+    String createReview(int rating, String title, String comment, int customer_id, int product_id);
 
     @Modifying
     @Query(value = "UPDATE reviews SET rating = ?, title = ?, comment = ?, customer_id = ?, product_id = ? WHERE id = ?", nativeQuery= true)

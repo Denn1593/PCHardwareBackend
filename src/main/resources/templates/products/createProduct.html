@@ -14,14 +14,14 @@
     <label for="description">Description:</label>
     <textarea type="text" id="description" name="description" th:object="${description}"></textarea><br><br>
 
-    <label for="article_number">Article Number:</label>
-    <input type="text" id="article_number" name="article_number" th:object="${article_number}"><br><br>
+    <label for="articleNumber">Article Number:</label>
+    <input type="text" id="articleNumber" name="articleNumber" th:object="${articleNumber}"><br><br>
 
-    <label for="manufacturer">Manufacturer:</label>
-    <input type="text" id="manufacturer" name="manufacturer" th:object="${manufacturer}"><br><br>
+    <label for="manufacturerId">Manufacturer ID:</label>
+    <input type="text" id="manufacturerId" name="manufacturerId" th:object="${manufacturerId}"><br><br>
 
-    <label for="for_sale">For sale:</label>
-    <input type="text" id="for_sale" name="for_sale" th:object="${for_sale}"><br><br>
+    <label for="forSale">For sale:</label>
+    <input type="text" id="forSale" name="forSale" th:object="${forSale}"><br><br>
 
     <label for="price">Price:</label>
     <input type="text" id="price" name="price" th:object="${price}"><br><br>
@@ -29,8 +29,8 @@
     <label for="stock">Stock:</label>
     <input type="text" id="stock" name="stock" th:object="${stock}"><br><br>
 
-    <label for="category_id">Category ID:</label>
-    <input type="text" id="category_id" name="category_id" th:object="${category_id}"><br><br>
+    <label for="categoryId">Category ID:</label>
+    <input type="text" id="categoryId" name="categoryId" th:object="${categoryId}"><br><br>
 
 <!--    <a th:href="@{products}">-->
     <input method="POST" type="submit" th:value="#{form.submit}">

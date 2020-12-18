@@ -19,3 +19,5 @@ INSERT INTO product_categories (id, name) VALUES ('9','External hard drives');
 INSERT INTO product_categories (id, name) VALUES ('10','Batteries');
 INSERT INTO product_categories (id, name) VALUES ('11','Monitors / screens');
 INSERT INTO product_categories (id, name) VALUES ('12','Speakers & headsets');
+
+set FOREIGN_KEY_CHECKS = 1;

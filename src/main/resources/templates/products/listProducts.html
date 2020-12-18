@@ -12,7 +12,7 @@
         <th>Name</th>
         <th>Description</th>
         <th>Article Number</th>
-        <th>Manufacturer</th>
+        <th>Manufacturer ID</th>
         <th>For sale</th>
         <th>Price</th>
         <th>Stock</th>
@@ -22,12 +22,12 @@
         <td th:text="${product.id}"></td>
         <td th:text="${product.name}"></td>
         <td th:text="${product.description}"></td>
-        <td th:text="${product.article_number}"></td>
-        <td th:text="${product.manufacturer}"></td>
-        <td th:text="${product.for_sale}"></td>
+        <td th:text="${product.articleNumber}"></td>
+        <td th:text="${product.manufacturerId}"></td>
+        <td th:text="${product.forSale}"></td>
         <td th:text="${product.price}"></td>
         <td th:text="${product.stock}"></td>
-        <td th:text="${product.category_id}"></td>
+        <td th:text="${product.categoryId}"></td>
     </tr>
 </table>
 

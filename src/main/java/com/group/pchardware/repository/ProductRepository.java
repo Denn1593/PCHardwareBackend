@@ -22,8 +22,8 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
 
 
     @Modifying
-    @Query(value = "INSERT INTO products (name, description, article_number, manufacturer, for_sale, price, stock, category_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?)", nativeQuery= true)
-    void createReview(String name, String description, String article_number, String manufacturer, boolean for_sale, int price, int stock, int category_id);
+    @Query(value = "INSERT INTO products (name, description, article_number, manufacturer_id, for_sale, price, stock, category_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?)", nativeQuery= true)
+    void createProduct(String name, String description, String articleNumber, int manufacturerID, boolean forSale, int price, int stock, int categoryId);
 
     void deleteById(int id);
 }
