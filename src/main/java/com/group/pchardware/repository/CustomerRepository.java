@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 
 public interface CustomerRepository extends JpaRepository<Customer, Integer> {
-    @Modifying
+
     @Query(value = "INSERT INTO customers VALUES (?, ?, ?, ?, ?, ?, ?)", nativeQuery = true)
     int newCustomer(String firstName, String lastName, String address, String phone, String email, Integer zip, String country);
 
